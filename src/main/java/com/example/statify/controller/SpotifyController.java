@@ -1,5 +1,6 @@
 package com.example.statify.controller;
 
+import com.example.statify.service.SpotifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -16,4 +17,10 @@ public class SpotifyController {
         String accessToken = principal.getAttribute("access_token");
         return spotifyService.getRecentlyPlayed(accessToken);
     }
-} 
+
+    @GetMapping("/top-artists")
+    public String getTopArtists(@AuthenticationPrincipal OAuth2User principal) {
+        String accessToken = principal.getAttribute("access_token");
+        return spotifyService.getTopArtists(accessToken);
+    }
+}
